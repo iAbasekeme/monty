@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
         }
     }
     char *lineptr = NULL;
-    size_t *n = 0;
+    size_t n = 0;
     int line_number = 1;
     ssize_t line;
 

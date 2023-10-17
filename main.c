@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     while (line != -1)
     {
         char *opcode = strtok(lineptr, "\t\n");
-        printf("opcode: %s", opcode);
+        printf("opcode: %s\n", opcode);
         if (opcode == NULL || strlen(opcode) == 0)
         {
             continue;

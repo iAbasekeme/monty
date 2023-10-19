@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 		char *sec_str = strtok(NULL, "\t\n");
 		if (sec_str == NULL)
 		{
-			fprintf(stderr, "L%d: usage: push integer %d\n", line_number);
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			free(lineptr);
 			fclose(file);
 			exit(EXIT_FAILURE);

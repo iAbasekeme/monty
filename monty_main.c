@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 	int line_number = 1;
 	ssize_t line;
 
-	while (line = getline(&lineptr, &n, file) != -1)
+	while (getline(&lineptr, &n, file) != -1)
 	{
 		line_number++;
 		char *opcode = strtok(lineptr, "\t\n");

@@ -35,4 +35,15 @@ void push(stack_t **stack, int value)
 
 /**
  * pall - a function that prints all the values on the stack
+ * @stack: the head of the list
+ * @line_number: Number of line to catch error
  */
+void pall(stack_t **stack, unsigned int line_number)
+{
+    stack_t *top = *stack;
+    while (top != 0)
+    {
+        printf("%d", top->n);
+        top = top->prev;
+    }
+}

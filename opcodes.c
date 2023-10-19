@@ -8,7 +8,6 @@
 void push(stack_t **stack, int value)
 {
 	stack_t *newNode;
-	stack_t **stack;
 
 	newNode = (stack_t *)malloc(sizeof(stack_t));
 	if (!newNode)

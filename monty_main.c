@@ -1,5 +1,7 @@
 #include "monty.h"
 
+extern void push(stack_t **stack, int value);
+
 int main(int argc, char *argv[])
 {
     FILE *file;
@@ -17,13 +19,15 @@ int main(int argc, char *argv[])
             exit(EXIT_FAILURE);
         }
     }
+
+    stack_t *stack = NULL;
+
     char *lineptr = NULL;
     size_t n = 0;
     int line_number = 1;
     ssize_t line;
 
-    line = getline(&lineptr, &n, file);
-    while (line != -1)
+    while (line = getline(&lineptr, &n, file) != -1)
     {
         char *opcode = strtok(lineptr, "\t\n");
         printf("opcode: %s\n", opcode);
@@ -31,11 +35,30 @@ int main(int argc, char *argv[])
         {
             continue;
         }
+        char *sec_str = strtok(NULL, "\t\n");
+        if (sec_str == NULL)
+        {
+            fprintf(stderr, "L%d: usage: push integer %s\n", line_number);
+            free(lineptr);
+            fclose(file);
+            exit(EXIT_FAILURE);
+        }
+        int value = atoi(sec_str);
+
+        if (strcmp(opcode, 'push') == 0)
+        {
+            push(&stack, value);
+        }
+        else if (strcmp(opcode, 'pall') == 0)
+        {
+            pall(&stack, line_number);
+        }
         fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
         free(lineptr);
-        fclose(file);
-        exit(EXIT_FAILURE);
         line_number++;
     }
+    free(lineptr);
+    fclose(file);
+    exit(EXIT_FAILURE);
     return (0);
 }

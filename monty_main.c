@@ -1,10 +1,17 @@
 #include "monty.h"
 
-extern void push(stack_t **stack, int value);
+/**
+ * main - Control function
+ * @argc: argument count
+ * @argv: argument vector
+ *
+ * Return: integer
+ */
 
 int main(int argc, char *argv[])
 {
 	FILE *file;
+
 	if (argc < 2)
 	{
 		write(STDERR_FILENO, "USAGE: monty file\n", strlen("USAGE: monty file"));
@@ -30,11 +37,13 @@ int main(int argc, char *argv[])
 	while (line = getline(&lineptr, &n, file) != -1)
 	{
 		char *opcode = strtok(lineptr, "\t\n");
+
 		printf("opcode: %s\n", opcode);
 		if (opcode == NULL || strlen(opcode) == 0)
 		{
 			continue;
 		}
+
 		char *sec_str = strtok(NULL, "\t\n");
 		if (sec_str == NULL)
 		{

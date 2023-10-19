@@ -44,6 +44,7 @@ int main(int argc, char *argv[])
 		}
 
 		char *sec_str = strtok(NULL, "\t\n");
+		printf("2nd opcode: %s\n", sec_str);
 		if (sec_str == NULL)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);

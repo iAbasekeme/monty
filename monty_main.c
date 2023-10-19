@@ -7,10 +7,10 @@
  *
  * Return: integer
  */
-
 int main(int argc, char *argv[])
 {
 	FILE *file;
+	stack_t *stack;
 
 	if (argc < 2)
 	{
@@ -26,8 +26,7 @@ int main(int argc, char *argv[])
 			exit(EXIT_FAILURE);
 		}
 	}
-
-	stack_t *stack = NULL;
+	stack = NULL;
 
 	char *lineptr = NULL;
 	size_t n = 0;

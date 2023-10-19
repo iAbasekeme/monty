@@ -46,18 +46,18 @@ int main(int argc, char *argv[])
 		char *sec_str = strtok(NULL, "\t\n");
 		if (sec_str == NULL)
 		{
-			fprintf(stderr, "L%d: usage: push integer %s\n", line_number);
+			fprintf(stderr, "L%d: usage: push integer %d\n", line_number);
 			free(lineptr);
 			fclose(file);
 			exit(EXIT_FAILURE);
 		}
 		int value = atoi(sec_str);
 
-		if (strcmp(opcode, 'push') == 0)
+		if (strcmp(opcode, "push") == 0)
 		{
 			push(&stack, value);
 		}
-		else if (strcmp(opcode, 'pall') == 0)
+		else if (strcmp(opcode, "pall") == 0)
 		{
 			pall(&stack, line_number);
 		}

@@ -32,7 +32,6 @@ void push(stack_t **stack, int value)
 		*stack = newNode;
 	}
 }
-
 /**
  * pall - a function that prints all the values on the stack
  * @stack: the head of the list
@@ -41,6 +40,7 @@ void push(stack_t **stack, int value)
 void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *top = *stack;
+
 	while (top != 0)
 	{
 		printf("%d", top->n);

@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
 
 	while (line = getline(&lineptr, &n, file) != -1)
 	{
+		line_number++;
 		char *opcode = strtok(lineptr, "\t\n");
 
 		printf("opcode: %s\n", opcode);
@@ -43,28 +44,31 @@ int main(int argc, char *argv[])
 			continue;
 		}
 
-		char *sec_str = strtok(NULL, "\t\n");
-		printf("2nd opcode: %s\n", sec_str);
-		if (sec_str == NULL)
-		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-			free(lineptr);
-			fclose(file);
-			exit(EXIT_FAILURE);
-		}
-		int value = atoi(sec_str);
-
 		if (strcmp(opcode, "push") == 0)
 		{
+
+			char *sec_str = strtok(NULL, "\t\n");
+			printf("2nd opcode: %s\n", sec_str);
+			if (sec_str == NULL)
+			{
+
+				fprintf(stderr, "L%d: usage: push integer\n", line_number);
+				free(lineptr);
+				fclose(file);
+				exit(EXIT_FAILURE);
+			}
+			int value = atoi(sec_str);
 			push(&stack, value);
 		}
 		else if (strcmp(opcode, "pall") == 0)
 		{
 			pall(&stack, line_number);
 		}
-		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
-		free(lineptr);
-		line_number++;
+		else
+		{
+			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
+			free(lineptr);
+		}
 	}
 	free(lineptr);
 	fclose(file);
